@@ -3,7 +3,7 @@
 if(!$_POST) exit;
 
 // Email address that messages will be sent to;
-$address = "vossendesign@gmail.com";
+$address = "contato@falaescrita.com.br";
 
 // Email address verification, do not edit.
 function isEmail($email) {
@@ -19,17 +19,17 @@ $phone      = $_POST['phone'];
 $verify     = $_POST['verify'];
 
 if(trim($name) == '') {
-	echo '<div class="error_message">You must enter your name.</div>';
+	echo '<div class="error_message">Você deve apresentar seu nome.</div>';
 	exit();
 } else if(trim($email) == '') {
-	echo '<div class="error_message">Please enter a valid email address.</div>';
+	echo '<div class="error_message">Convém conferir o e-mail digitado.</div>';
 	exit();
 } else if(!isEmail($email)) {
-	echo '<div class="error_message">You have enter an invalid e-mail address, try again.</div>';
+	echo '<div class="error_message">Convém conferir o e-mail digitado, tente novamente.</div>';
 	exit();
 }
 if(trim($message) == '') {
-	echo '<div class="error_message">Please enter your message.</div>';
+	echo '<div class="error_message">Por favor, indique a razão do contato.</div>';
 	exit();
 }
 
@@ -40,10 +40,10 @@ if(get_magic_quotes_gpc()) {
 // Configuration option.
 
 // Email content
-$e_subject = 'New message from your website';
+$e_subject = 'Contato efetuado pelo Site';
 $e_content = "$message" . PHP_EOL . PHP_EOL;
-$e_details = "\n Sender: $name \n Phone: $phone \n Email: $email" . PHP_EOL . PHP_EOL;
-$e_reply = "You can reply directly to this email to respond to $name." . PHP_EOL . PHP_EOL;
+$e_details = "\n Quem enviou: $name \n Telefone: $phone \n Email: $email" . PHP_EOL . PHP_EOL;
+$e_reply = "Você pode responder diretamente a(o) $name." . PHP_EOL . PHP_EOL;
 
 $msg = wordwrap( $e_content . $e_details . $e_reply, 70 );
 
@@ -56,7 +56,7 @@ $headers .= "Content-Transfer-Encoding: quoted-printable" . PHP_EOL;
 if(mail($address, $e_subject, $msg, $headers)) {
 	// Email has sent successfully, echo a success page.
 	echo "<div id='success_page'>";
-	echo "<h4 class='highlight'>Thank you <strong>$name</strong>, your message has been submitted to us.</h4>";
+	echo "<h4 class='highlight'>Obrigado! <strong>$name</strong>, retornaremos em breve!</h4>";
 	echo "</div>";
 } else {
 	echo 'ERROR!';
